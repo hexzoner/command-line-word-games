@@ -24,25 +24,33 @@ console.log(fColor.yellow + "User entered " + args.length + " words", fColor.whi
 
 for (let i = 0; i < args.length; i++) {
   if (vowels.indexOf(args[i][0].toLowerCase()) != -1) {
-    // console.log("We found a word starting with a vowel: " + args[i] + " (index " + i + ")");
+    // Found a word starting with ---a vowel---
     args[i] += "way";
   }
 
   if (args[i].length == 1) continue;
 
+  let hasDot = false;
+  if (args[i][args[i].length - 1] == ".") {
+    hasDot = true;
+    args[i] = args[i].substring(0, args[i].length - 1);
+  }
+
   if (consonats.indexOf(args[i][0].toLowerCase()) !== -1 && consonats.indexOf(args[i][1].toLowerCase()) !== -1) {
-    console.log("We found a word starting with 2 consonants: " + args[i] + " (index " + i + ")");
+    //Found a word starting with ---2 consonants---
     let newWord = args[i].slice(2, args[i].length) + args[i][0].toLowerCase() + args[i][1] + "ay";
     args[i] = newWord;
   }
 
   if (consonats.indexOf(args[i][0].toLowerCase()) !== -1 && vowels.indexOf(args[i][1].toLowerCase()) !== -1) {
-    // console.log("We found a word starting with consonat + vowel: " + args[i] + " (index " + i + ")");
+    // Found the word starting with --- a consonant and a vowel---
 
     let newWord = args[i].slice(1, args[i].length) + args[i][0].toLowerCase() + "ay";
     // const upperCased = newWord[0].toUpperCase();
     args[i] = newWord;
   }
+
+  if (hasDot) args[i] += ".";
 }
 
 console.log(fColor.red, args.join(" "));
