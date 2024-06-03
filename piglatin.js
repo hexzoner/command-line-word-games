@@ -1,3 +1,7 @@
+function CapitalizeFirstLetter(string) {
+  return string[0].toUpperCase() + string.slice(1);
+}
+
 const args = process.argv.slice(2);
 // const argsLowered = args.map((x) => x.toLowerCase());
 // const input = argsLowered[0];
@@ -14,6 +18,7 @@ const fColor = {
 
 const consonats = "bcdfghjklmnpqrstvwxyz";
 const vowels = "aeiou";
+const specials = "/`!@#$%^&*()_+-=[]{};':|,.<>?~]";
 
 if (args.length == 0) {
   console.log("No message was entered. Please enter your message and try again.");
@@ -23,33 +28,33 @@ if (args.length == 0) {
 console.log(fColor.yellow + "User entered " + args.length + " words", fColor.white);
 
 for (let i = 0; i < args.length; i++) {
-  if (vowels.indexOf(args[i][0].toLowerCase()) != -1) {
-    // Found a word starting with ---a vowel---
-    args[i] += "way";
-  }
-
   if (args[i].length == 1) continue;
 
+  let isUpperCase = false;
+  if (args[i][0] == args[i][0].toUpperCase()) isUpperCase = true;
+
+  //---special characters logic
   let hasDot = false;
   if (args[i][args[i].length - 1] == ".") {
     hasDot = true;
     args[i] = args[i].substring(0, args[i].length - 1);
   }
 
+  //---a vowel---
+  if (vowels.indexOf(args[i][0].toLowerCase()) != -1) args[i] += "way";
+
+  //---2 consonants---
   if (consonats.indexOf(args[i][0].toLowerCase()) !== -1 && consonats.indexOf(args[i][1].toLowerCase()) !== -1) {
-    //Found a word starting with ---2 consonants---
-    let newWord = args[i].slice(2, args[i].length) + args[i][0].toLowerCase() + args[i][1] + "ay";
-    args[i] = newWord;
+    args[i] = args[i].slice(2, args[i].length) + args[i][0].toLowerCase() + args[i][1] + "ay";
   }
 
+  // -- a consonant and a vowel---
   if (consonats.indexOf(args[i][0].toLowerCase()) !== -1 && vowels.indexOf(args[i][1].toLowerCase()) !== -1) {
-    // Found the word starting with --- a consonant and a vowel---
-
-    let newWord = args[i].slice(1, args[i].length) + args[i][0].toLowerCase() + "ay";
-    // const upperCased = newWord[0].toUpperCase();
-    args[i] = newWord;
+    args[i] = args[i].slice(1, args[i].length) + args[i][0].toLowerCase() + "ay";
   }
 
+  //---final fomatting logic
+  if (isUpperCase) args[i] = CapitalizeFirstLetter(args[i]);
   if (hasDot) args[i] += ".";
 }
 
