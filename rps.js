@@ -22,31 +22,31 @@ if (input != "rock" && input != "paper" && input != "scissors") {
 }
 
 const choices = ["rock", "paper", "scissors"];
-const oppenentInput = choices[Math.floor(Math.random() * 3)];
+const computerInput = choices[Math.floor(Math.random() * 3)];
 let winner = "draw";
 
 console.log(fColor.yellow + "--- Rock Paper Scissors Game---" + fColor.reset);
 console.log("Player's choice: " + fColor.magenta + CapitalizeFirstLetter(input) + fColor.reset);
-console.log("Opponent's choice: " + fColor.magenta + CapitalizeFirstLetter(oppenentInput + fColor.reset));
+console.log("Computer's choice: " + fColor.magenta + CapitalizeFirstLetter(computerInput + fColor.reset));
 
 console.log(fColor.yellow + "-------------------------");
 switch (true) {
-  case input == "rock" && oppenentInput == "scissors":
+  case input == "rock" && computerInput == "scissors":
     winner = "player";
     break;
-  case input == "rock" && oppenentInput == "paper":
-    winner = "opponent";
+  case input == "rock" && computerInput == "paper":
+    winner = "computer";
     break;
-  case input == "paper" && oppenentInput == "rock":
+  case input == "paper" && computerInput == "rock":
     winner = "player";
     break;
-  case input == "paper" && oppenentInput == "scissors":
-    winner = "opponent";
+  case input == "paper" && computerInput == "scissors":
+    winner = "computer";
     break;
-  case input == "scissors" && oppenentInput == "rock":
-    winner = "opponent";
+  case input == "scissors" && computerInput == "rock":
+    winner = "computer";
     break;
-  case input == "scissors" && oppenentInput == "paper":
+  case input == "scissors" && computerInput == "paper":
     winner = "player";
     break;
 }
