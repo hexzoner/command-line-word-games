@@ -41,7 +41,7 @@ function getAlphabetPosition(letter) {
 }
 
 function getNewAlphabetPosition(letter, shift) {
-  let newPosition = parseInt(getAlphabetPosition(letter)) + parseInt(shift);
+  let newPosition = parseInt(alphabet.indexOf(letter)) + parseInt(shift);
   if (newPosition >= 26 || newPosition <= -26) newPosition = newPosition % 26;
   if (newPosition < 0) newPosition = 26 + newPosition;
   // a-->-1
