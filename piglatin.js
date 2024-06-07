@@ -25,7 +25,7 @@ const inputText = args[0];
 
 // const inputWords = inputText.split(" ");
 const inputWords = inputText.match(/\w+/g);
-//    / ... /g    It's a global regex. So it'll operate on multiple matches in the string.
+//    / ... /g    It's a global regex. So it operates on multiple matches in the whole string.
 // \w    Matches any alphanumeric character from the basic Latin alphabet, including the underscore. Equivalent to [A-Za-z0-9_].
 
 console.log(inputWords);
@@ -37,13 +37,6 @@ for (let i = 0; i < inputWords.length; i++) {
 
   let isUpperCase = false;
   if (inputWords[i][0] == inputWords[i][0].toUpperCase()) isUpperCase = true;
-
-  //---special characters logic
-  let hasDot = false;
-  if (inputWords[i][inputWords[i].length - 1] == ".") {
-    hasDot = true;
-    inputWords[i] = inputWords[i].substring(0, inputWords[i].length - 1);
-  }
 
   //---a vowel---
   if (vowels.indexOf(inputWords[i][0].toLowerCase()) != -1) inputWords[i] += "way";
@@ -60,7 +53,6 @@ for (let i = 0; i < inputWords.length; i++) {
 
   //---final fomatting logic
   if (isUpperCase) inputWords[i] = CapitalizeFirstLetter(inputWords[i]);
-  if (hasDot) inputWords[i] += ".";
 }
 
 console.log(fColor.red, inputWords.join(" "));
